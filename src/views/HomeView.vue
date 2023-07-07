@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { useStore } from "../composable/useStore";
+import { useStore } from "../composables/useStore";
 
 const { content } = useStore();
 const { auth } = content;
@@ -38,3 +38,4 @@ main {
   gap: 2rem;
 }
 </style>
+../composables/useStore

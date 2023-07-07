@@ -1,5 +1,6 @@
 import "../src/firebase.config.js";
 import "./assets/main.css";
+import "@/modules/auth";
 
 import { createApp } from "vue";
 import App from "./App.vue";
