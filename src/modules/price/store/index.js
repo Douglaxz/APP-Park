@@ -3,21 +3,21 @@ import { create, list, detail, update } from "../api";
 
 export const priceStore = reactive({
   items: [],
-  selectedPrices: {},
-  async getPrices() {
+  selectedModel: {},
+  async getModels() {
     const res = await list();
     this.items = res;
   },
-  async getPrice(id) {
+  async getModel(id) {
     const res = await detail(id);
     this.selectedPrice = res;
   },
-  async addPrice(payload) {
+  async addModel(payload) {
     const res = await create(payload);
     this.items.push(res);
     return res;
   },
-  async updatePrice(id, payload) {
+  async updateModel(id, payload) {
     const res = await update(id, payload);
     this.items = res;
   },

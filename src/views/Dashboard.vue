@@ -1,6 +1,7 @@
 <template>
   <div class="about">
     <RouterLink to="/price">Preços</RouterLink>
+    <RouterLink to="/model">Modelos</RouterLink>
   </div>
 </template>
 

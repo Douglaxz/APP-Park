@@ -8,6 +8,7 @@ const { content } = useStore();
 const desc = ref(content.price.selectedPrice?.descPrice);
 const valor = ref(content.price.selectedPrice?.valPrice);
 const status = ref(content.price.selectedPrice?.statusPrice);
+
 const id = route.params.id;
 
 async function handleUpdatePrice() {

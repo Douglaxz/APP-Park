@@ -4,27 +4,28 @@ import { onMounted, ref, useModel } from "vue";
 const { content } = useStore();
 
 onMounted(async () => {
-  content.price.getModels();
+  content.model.getModels();
 });
 </script>
 
 <template>
   <main>
-    <RouterLink to="/price/add">Adicionar Preço</RouterLink>
+    <RouterLink to="/model/add">Adicionar Modelo</RouterLink>
     <hr />
     <table>
       <tr>
-        <th>Descrição</th>
-        <th>Valor</th>
+        <th>Marca</th>
+        <th>Model</th>
         <th>Status</th>
         <th>Ação</th>
       </tr>
-      <tr v-for="price in content.price.items">
-        <td>{{ price.descPrice }}</td>
-        <td>{{ price.valPrice }}</td>
-        <td>{{ price.statusPrice }}</td>
+
+      <tr v-for="model in content.model.items">
+        <td>{{ model.marca }}</td>
+        <td>{{ model.descModel }}</td>
+        <td>{{ model.statusModel }}</td>
         <td>
-          <router-link :to="`/model/${price.id}`">
+          <router-link :to="`/model/${model.id}`">
             <h3>Visualizar</h3>
           </router-link>
         </td>

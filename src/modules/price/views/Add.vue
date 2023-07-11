@@ -13,7 +13,7 @@ async function handleCreatePrice() {
     statusPrice: "true",
     valPrice: newValue.value,
   });
-  if (res) {
+  if (!res) {
     alert("Item da tabela de preços criado com sucesso");
     window.location.href = "/price";
   }
