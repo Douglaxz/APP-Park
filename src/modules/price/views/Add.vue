@@ -13,10 +13,10 @@ async function handleCreatePrice() {
     statusPrice: "true",
     valPrice: newValue.value,
   });
-  if (res) {
-    alert("Item da tabela de preços criado com sucesso");
-    window.location.href = "/price";
-  }
+  if (!res) return;
+  alert("Item da tabela de preços criado com sucesso");
+  window.location.href = "/price";
+  
 }
 </script>
 <template>
