@@ -18,7 +18,7 @@ async function handleSignIn() {
     return;
   }
 
-  router.push("/about");
+  router.push("/dashboard");
 }
 </script>
 

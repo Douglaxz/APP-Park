@@ -1,6 +1,7 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <RouterLink to="/price">Preços</RouterLink>
+    <RouterLink to="/model">Modelos</RouterLink>
   </div>
 </template>
 

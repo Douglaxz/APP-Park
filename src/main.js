@@ -1,6 +1,9 @@
 import "../src/firebase.config.js";
 import "./assets/main.css";
 import "@/modules/auth";
+import "@/modules/price";
+import "@/modules/car-models";
+
 import "@/modules/car-marks";
 
 
