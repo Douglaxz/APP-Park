@@ -21,7 +21,9 @@ export async function list(query) {
 }
 
 export async function detailWithMark(modelId) {
-  const docSnapshot = await getDoc(doc(db, "model", modelId));
+  const docSnapshot = await getDoc(
+    doc(db, "model", modelId).orderBy("descModel")
+  );
   const markId = docSnapshot.data().idMark;
   const markSnapshot = await getDoc(doc(db, "mark", markId));
 
