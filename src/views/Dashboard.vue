@@ -1,5 +1,7 @@
 <template>
-  <div class="about">Selecione a funcionalidade nos menus acima</div>
+  <div class="about">
+    <p class="msgDashboard">Selecione a funcionalidade nos menus acima</p>
+  </div>
 </template>
 
 <style></style>
