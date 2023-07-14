@@ -6,31 +6,32 @@ import { useRoute } from "vue-router";
 const route = useRoute();
 const { content } = useStore();
 
-const desc = ref(content.mark.selectedCarMarks?.descMark);
-const status = ref(content.mark.selectedCarMarks?.statusMark);
+const desc = ref(content.brand.selectedBrand?.descBrand);
+const status = ref(content.brand.selectedBrand?.statusBrand);
 const id = route.params.id;
 
-async function handleEditMark() {
-  const res = await content.mark.updateMark(id, {
-    descMark: desc.value,
-    statusMark: status.value,
+async function handleEditBrand() {
+  const res = await content.brand.updateBrand(id, {
+    descBrand: desc.value,
+    statusBrand: status.value,
   });
   if (!res) {
     alert("Marca editada com sucesso");
-    window.location.href = "/carMarks";
+    window.location.href = "/brand";
   }
 }
 
 onMounted(async () => {
-  if (content.mark.selectedCarMarks?.id) return;
-  content.mark.getCarMark(route.params.id);
+  if (content.brand.selectedBrand?.id) return;
+  content.brand.getBrand(route.params.id);
+  console.log("ONDE")
 });
 </script>
 
 <template>
   <h1>EDITAR</h1>
-  <button @click="handleEditMark">Atualizar</button>
-  <router-link :to="`/carMarks/${route.params.id}`"> Voltar </router-link>
+  <button @click="handleEditBrand">Atualizar</button>
+  <router-link :to="`/brand/${route.params.id}`"> Voltar </router-link>
   <hr />
   <table>
     <tr>

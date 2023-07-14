@@ -1,8 +1,8 @@
 import { addDoc, collection, doc, getDoc, getDocs, updateDoc, } from "firebase/firestore";
-import { db } from "../../../firebase.config.js";
+import { db } from "../../../firebase.config";
 
 export async function list() {
-  const querySnapshot = await getDocs(collection(db, "mark"));
+  const querySnapshot = await getDocs(collection(db, "brand"));
   const localItems = [];
   querySnapshot.forEach((doc) => {
     localItems.push({ ...doc.data(), id: doc.id });
@@ -10,18 +10,18 @@ export async function list() {
   return localItems;
 }
 
-export async function detail(markId) {
-  const docSnapshot = await getDoc(doc(db, "mark", markId));
+export async function detail(brandId) {
+  const docSnapshot = await getDoc(doc(db, "brand", brandId));
   return { ...docSnapshot.data(), id: docSnapshot.id };
 }
 
 export async function create(payload) {
-  const docRef = await addDoc(collection(db, "mark"), payload);
+  const docRef = await addDoc(collection(db, "brand"), payload);
   return docRef;
 }
   
   export async function update(id,payload) {
-    const docRef = await updateDoc(doc(db, "mark",id), payload);
+    const docRef = await updateDoc(doc(db, "brand",id), payload);
     return docRef;
   }
 

@@ -5,7 +5,7 @@ import "@/modules/price";
 import "@/modules/car-models";
 import "@/modules/park";
 
-import "@/modules/car-marks";
+import "@/modules/brand";
 
 
 import { createApp } from "vue";

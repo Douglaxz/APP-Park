@@ -8,15 +8,15 @@ const { content } = useStore();
 const newTitle = ref("");
 const newValue = ref("");
 
-async function handleCreateMark() {
-  const res = await content.mark.addMark({
-    descMark: newTitle.value,
-    statusMark: "true",
-    valMark: newValue.value,
+async function handleCreateBrand() {
+  const res = await content.brand.addBrands({
+    descBrand: newTitle.value,
+    statusBrand: "true",
+    valBrand: newValue.value,
   });
   if (!res) return;
     alert("Item criado com sucesso");
-    window.location.href = "/carMarks";
+    window.location.href = "/brand";
 }
 </script>
 <template>
@@ -25,7 +25,7 @@ async function handleCreateMark() {
       Descrição:
       <input type="text" v-model="newTitle" />
     </label>
-    <button @click="handleCreateMark">Create</button>
+    <button @click="handleCreateBrand">Create</button>
   </main>
 </template>
 <style>

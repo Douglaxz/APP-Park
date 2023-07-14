@@ -7,19 +7,19 @@ const { content } = useStore();
 const route = useRoute();
 const newTitle = ref("");
 
-async function handleCreateCarMark() {
-  const res = await content.mark.addCarMark({
-    descMark: newTitle.value,
-    statusMark: true,
+async function handleCreateBrand() {
+  const res = await content.brand.addBrands({
+    descBrand: newTitle.value,
+    statusBrand: true,
   });
   if (res) {
     alert("criado com sucesso");
-    content.mark.getCarMarks();
+    content.brand.brands();
   }
 }
 
 onMounted(async () => {
-  content.mark.getCarMarks();
+  content.brand.brands();
 });
 </script>
 
@@ -29,10 +29,10 @@ onMounted(async () => {
       Marca
       <input type="text" v-model="newTitle" />
     </label>
-    <button @click="handleCreateCarMark">Create</button>
-    <div v-for="mark in content.mark.items">
-      <router-link :to="`/carMarks/${mark.id}`">
-        <h3>{{ mark.descMark }}</h3>
+    <button @click="handleCreateBrand">Create</button>
+    <div v-for="brand in content.brand.items">
+      <router-link :to="`/brand/${brand.id}`">
+        <h3>{{ brand.descBrand }}</h3>
       </router-link>
     </div>
   </main>

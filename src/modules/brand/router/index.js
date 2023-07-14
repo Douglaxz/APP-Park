@@ -1,22 +1,22 @@
 export const routes = [
   {
-    path: "/carMarks",
-    name: "carMarksList",
+    path: "/brand",
+    name: "brandList",
     component: () => import("../views/List.vue"),
   },
   {
-    path: "/carMarks/:id",
-    name: "carMarksDetail",
+    path: "/brand/:id",
+    name: "brandDetail",
     component: () => import("../views/Detail.vue"),
   },
   {
-    path: "/carMarks/:id/edit",
-    name: "carMarksEdit",
+    path: "/brand/:id/edit",
+    name: "brandEdit",
     component: () => import("../views/Edit.vue"),
   },
   {
-  path: "/carMarks/add",
-    name: "carMarksAdd",
+  path: "/brand/add",
+    name: "brandAdd",
     component: () => import("../views/Add.vue"),
   },
 ];
