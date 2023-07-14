@@ -2,6 +2,8 @@
 import { useStore } from "@/composables/useStore";
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
+import Alert from "../../../components/alert.vue";
+import Body from "../../../components/body.vue";
 
 const route = useRoute();
 const { content } = useStore();
@@ -22,7 +24,8 @@ async function handleUpdatePrice() {
     minuteStartPrice: minuteStartPrice.value,
   });
   if (!res) {
-    alert("Item da tabela de preços atuaizado com sucesso");
+    const myModalAlternative = new bootstrap.Modal("#exampleModal");
+    myModalAlternative.show();
   }
 }
 
@@ -33,32 +36,60 @@ onMounted(() => {
 </script>
 
 <template>
-  <h1>EDITAR</h1>
-  <button @click="handleUpdatePrice">Atualizar</button>
-  <router-link :to="`/price/${route.params.id}`"> Voltar </router-link>
-  <hr />
-  <table>
-    <tr>
-      <td>Descrição</td>
-      <td>
-        <input type="text" v-model="desc" />
-      </td>
-    </tr>
-    <tr>
-      <td>Valor</td>
-      <td><input type="text" v-model="valor" /></td>
-    </tr>
-    <tr>
-      <td>Status</td>
-      <td><input type="text" v-model="status" /></td>
-    </tr>
-    <tr>
-      <td>Minuto inicio cobrança</td>
-      <td><input type="text" v-model="minuteStartPrice" /></td>
-    </tr>
-    <tr>
-      <td>Minuto final cobrança</td>
-      <td><input type="text" v-model="minuteFinalPrice" /></td>
-    </tr>
-  </table>
+  <Alert msg="Item da tabela de preços atuaizado com sucesso"></Alert>
+  <Body title="Editar lista de preços">
+    <template v-slot:buttons>
+      <button class="btn btn-dark" @click="handleUpdatePrice">
+        <i class="bi bi-check-circle"></i> Salvar
+      </button>
+      <RouterLink :to="`/price/${route.params.id}`">
+        <button class="btn btn-dark">
+          <i class="bi bi-box-arrow-left"></i> Voltar
+        </button>
+      </RouterLink>
+    </template>
+    <template v-slot:content>
+      <table class="table">
+        <tr>
+          <td width="30%">Descrição:</td>
+          <td width="70%">
+            <input type="text" v-model="desc" class="form-control" />
+          </td>
+        </tr>
+        <tr>
+          <td>Valor: R$</td>
+          <td><input type="text" v-model="valor" class="form-control" /></td>
+        </tr>
+        <tr>
+          <td>Status:</td>
+          <td>
+            <select v-model="status" class="form-control">
+              <option :value="true">Ativo</option>
+              <option :value="false">Desativado</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Minuto inicio cobrança:</td>
+          <td>
+            <input
+              type="text"
+              v-model="minuteStartPrice"
+              class="form-control"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Minuto final cobrança:</td>
+          <td>
+            <input
+              type="text"
+              v-model="minuteFinalPrice"
+              class="form-control"
+            />
+          </td>
+        </tr>
+      </table>
+    </template>
+  </Body>
 </template>
