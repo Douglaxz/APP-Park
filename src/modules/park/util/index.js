@@ -13,7 +13,6 @@ export function formatTimestamp(timestamp) {
   return dia + "/" + mes + "/" + ano + " " + hora + ":" + minutos;
 }
 
-export const timestamp1 = computed(() => {
-  const timestamp = content.park.selectedPark?.checkIn;
-  return formatTimestamp(timestamp);
+export const timestamp = computed(() => {
+  return formatTimestamp(content.park.selectedPark?.checkIn);
 });

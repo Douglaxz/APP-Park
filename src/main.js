@@ -5,6 +5,9 @@ import "@/modules/price";
 import "@/modules/car-models";
 import "@/modules/park";
 
+import "@/modules/car-marks";
+
+
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
