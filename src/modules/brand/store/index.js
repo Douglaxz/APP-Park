@@ -1,23 +1,23 @@
 import { reactive } from "vue";
 import { create, list, detail, update } from "../api";
 
-export const carMarksStore = reactive({
+export const brandStore = reactive({
   items: [],
-  selectedcarMark: {},
-  async getCarMarks() {
+  selectedBrand: {},
+  async brands() {
     const res = await list();
     this.items = res;
   },
-  async getCarMark(id) {
+  async getBrand(id) {
     const res = await detail(id);
-    this.selectedCarMarks = res;
+    this.selectedBrand = res;
   },
-  async addCarMark(payload) {
+  async addBrands(payload) {
     const res = await create(payload);
     this.items.push(res);
     return res;
   },
-  async updateMark(id, payload) {
+  async updateBrand(id, payload) {
     console.log("entrou aqui");
     const res = await update(id, payload);
     this.items = res;
