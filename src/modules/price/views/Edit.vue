@@ -8,6 +8,8 @@ const { content } = useStore();
 const desc = ref(content.price.selectedPrice?.descPrice);
 const valor = ref(content.price.selectedPrice?.valPrice);
 const status = ref(content.price.selectedPrice?.statusPrice);
+const minuteFinalPrice = ref(content.price.selectedPrice?.minuteFinalPrice);
+const minuteStartPrice = ref(content.price.selectedPrice?.minuteStartPrice);
 
 const id = route.params.id;
 
@@ -16,8 +18,10 @@ async function handleUpdatePrice() {
     descPrice: desc.value,
     statusPrice: status.value,
     valPrice: valor.value,
+    minuteFinalPrice: minuteFinalPrice.value,
+    minuteStartPrice: minuteStartPrice.value,
   });
-  if (res) {
+  if (!res) {
     alert("Item da tabela de preços atuaizado com sucesso");
   }
 }
@@ -47,6 +51,14 @@ onMounted(() => {
     <tr>
       <td>Status</td>
       <td><input type="text" v-model="status" /></td>
+    </tr>
+    <tr>
+      <td>Minuto inicio cobrança</td>
+      <td><input type="text" v-model="minuteStartPrice" /></td>
+    </tr>
+    <tr>
+      <td>Minuto final cobrança</td>
+      <td><input type="text" v-model="minuteFinalPrice" /></td>
     </tr>
   </table>
 </template>

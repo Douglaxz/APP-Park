@@ -50,5 +50,25 @@ onMounted(() => {
         />
       </td>
     </tr>
+    <tr>
+      <td>Minuto inicio cobrança</td>
+      <td>
+        <input
+          type="text"
+          readonly
+          :value="content.price.selectedPrice?.minuteStartPrice"
+        />
+      </td>
+    </tr>
+    <tr>
+      <td>Minuto final cobrança</td>
+      <td>
+        <input
+          type="text"
+          readonly
+          :value="content.price.selectedPrice?.minuteFinalPrice"
+        />
+      </td>
+    </tr>
   </table>
 </template>

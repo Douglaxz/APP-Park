@@ -3,6 +3,7 @@ import "./assets/main.css";
 import "@/modules/auth";
 import "@/modules/price";
 import "@/modules/car-models";
+import "@/modules/park";
 
 import "@/modules/brand";
 

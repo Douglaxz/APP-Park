@@ -1,35 +1,75 @@
-@import './base.css';
+body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.mainScreen {
+  border: 0px solid black;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  width: 70vw;
+  height: 100%;
+  border: 0px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.boxContainer {
+  height: 45vw;
+  width: 30vw;
+  border: 0px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form {
+  border: 2px solid black;
+  width: 60%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formInput {
+  padding: 15px;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.formTitulo {
+  background-color: black;
+  color: white;
+  width: 100%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-
-  font-weight: normal;
+  margin-top: 0;
+  width: 97vw;
+  height: 100vh;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+.about {
+  display: flex;
+  width: 100%;
+  height: 36vw;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
 }
