@@ -2,6 +2,7 @@
   <div class="about">
     <RouterLink to="/price">Preços</RouterLink>
     <RouterLink to="/model">Modelos</RouterLink>
+    <RouterLink to="/park">Estadia (Estacionamento)</RouterLink>
   </div>
 </template>
 
