@@ -36,7 +36,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <Alert msg="Item da tabela de preços atuaizado com sucesso"></Alert>
+  <Alert msg="Item da tabela de preços atualizado com sucesso"></Alert>
   <Body title="Editar lista de preços">
     <template v-slot:buttons>
       <button class="btn btn-dark" @click="handleUpdatePrice">
