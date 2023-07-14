@@ -17,25 +17,29 @@ async function handleSignIn() {
     alert("email ou senha incorretos");
     return;
   }
-
   router.push("/dashboard");
 }
 </script>
 
 <template>
   <main>
-    <input type="email" v-model="email" />
-    <input type="password" v-model="password" />
-    <button @click="handleSignIn">Logar</button>
+    <div class="mainScreen">
+      <div class="image"><img src="../assets/fundo.jpeg" width="920" /></div>
+      <div class="boxContainer">
+        <div class="form">
+          <div class="formTitulo">
+            <i class="bi bi-p-circle"></i> Estacionamento
+          </div>
+          <div class="formInput">
+            Bem vindo ao sistema de gerenciamento de estadia de veículos
+            <input type="email" v-model="email" placeholder="e-mail" />
+            <input type="password" v-model="password" placeholder="senha" />
+            <button @click="handleSignIn" class="btn btn-primary">Login</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 </template>
 
-<style scoped>
-main {
-  display: flex;
-  flex-direction: column;
-  max-width: 200px;
-  gap: 2rem;
-}
-</style>
-../composables/useStore
+<style scoped></style>
