@@ -14,9 +14,7 @@ defineProps({
       </div>
     </div>
     <div class="contentList">
-      <div class="formIntern">
-        <slot name="content"></slot>
-      </div>
+      <slot name="content"></slot>
     </div>
   </div>
 </template>

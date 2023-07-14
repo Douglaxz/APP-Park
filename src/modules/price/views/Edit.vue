@@ -49,47 +49,49 @@ onMounted(() => {
       </RouterLink>
     </template>
     <template v-slot:content>
-      <table class="table">
-        <tr>
-          <td width="30%">Descrição:</td>
-          <td width="70%">
-            <input type="text" v-model="desc" class="form-control" />
-          </td>
-        </tr>
-        <tr>
-          <td>Valor: R$</td>
-          <td><input type="text" v-model="valor" class="form-control" /></td>
-        </tr>
-        <tr>
-          <td>Status:</td>
-          <td>
-            <select v-model="status" class="form-control">
-              <option :value="true">Ativo</option>
-              <option :value="false">Desativado</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td>Minuto inicio cobrança:</td>
-          <td>
-            <input
-              type="text"
-              v-model="minuteStartPrice"
-              class="form-control"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>Minuto final cobrança:</td>
-          <td>
-            <input
-              type="text"
-              v-model="minuteFinalPrice"
-              class="form-control"
-            />
-          </td>
-        </tr>
-      </table>
+      <div class="formIntern">
+        <table class="table">
+          <tr>
+            <td width="30%">Descrição:</td>
+            <td width="70%">
+              <input type="text" v-model="desc" class="form-control" />
+            </td>
+          </tr>
+          <tr>
+            <td>Valor: R$</td>
+            <td><input type="text" v-model="valor" class="form-control" /></td>
+          </tr>
+          <tr>
+            <td>Status:</td>
+            <td>
+              <select v-model="status" class="form-control">
+                <option :value="true">Ativo</option>
+                <option :value="false">Desativado</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Minuto inicio cobrança:</td>
+            <td>
+              <input
+                type="text"
+                v-model="minuteStartPrice"
+                class="form-control"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Minuto final cobrança:</td>
+            <td>
+              <input
+                type="text"
+                v-model="minuteFinalPrice"
+                class="form-control"
+              />
+            </td>
+          </tr>
+        </table>
+      </div>
     </template>
   </Body>
 </template>
