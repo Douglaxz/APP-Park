@@ -2,6 +2,7 @@
   <div class="about">
     <RouterLink to="/price">Preços</RouterLink>
     <RouterLink to="/model">Modelos</RouterLink>
+    <RouterLink to="/brand">Marcas</RouterLink>
   </div>
 </template>
 
