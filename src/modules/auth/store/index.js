@@ -1,5 +1,5 @@
 import { reactive } from "vue";
-import { signIn, signUp } from "../api";
+import { signIn, signUp, signOut } from "../api";
 
 export const authStore = reactive({
   user: {},
@@ -12,4 +12,5 @@ export const authStore = reactive({
     return res;
   },
   signUp: signUp,
+  signOut: signOut,
 });
