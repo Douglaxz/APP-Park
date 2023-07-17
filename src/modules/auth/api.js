@@ -34,7 +34,7 @@ export const signOut = async () => {
   try {
     await auth.signOut();
     console.log("Logout realizado com sucesso!");
-    window.location.href = "/";
+    this.$router.push("/");
   } catch (err) {
     console.error("Erro ao fazer logout:", err);
   }
