@@ -113,8 +113,8 @@ main {
   place-items: top;
   border: 1px solid black;
   display: flex;
-  align-items: center;
   justify-content: center;
+  overflow: auto;
 }
 .formIntern {
   display: flex;
