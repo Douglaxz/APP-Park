@@ -3,6 +3,8 @@ import { useStore } from "@/composables/useStore";
 import { onMounted, ref, useModel, computed } from "vue";
 import { useRoute } from "vue-router";
 import { formatTimestamp } from "../util";
+import Alert from "../../../components/alert.vue";
+import Body from "../../../components/body.vue";
 
 const route = useRoute();
 const { content } = useStore();
@@ -46,56 +48,83 @@ onMounted(() => {
 </script>
 
 <template>
-  <h1>EDITAR</h1>
-  <button @click="handleUpdatePark">Atualizar</button>
-  <router-link :to="`/park/${route.params.id}`"> Voltar </router-link>
-  <hr />
-  <table>
-    <tr>
-      <td>Entrada</td>
-      <td>
-        <input type="text" readonly :value="formattedTimestamp" />
-      </td>
-    </tr>
-    <tr>
-      <td>Placa</td>
-      <td>
-        <input type="text" v-model="licensePlate" />
-      </td>
-    </tr>
-    <tr>
-      <td>Marca</td>
-      <td>
-        <select v-model="selectedMark" @change="updateModel">
-          <option value="">Selecione uma marca</option>
-          <option
-            v-for="mark in content.park.mark"
-            :value="mark.id"
-            :key="mark.id"
-          >
-            {{ mark.descMark }}
-          </option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td>Modelo:</td>
-      <td>
-        <select v-model="selectedModel">
-          <option value="">Selecione um modelo</option>
-          <option
-            v-for="model in filteredModels"
-            :value="model.id"
-            :key="model.id"
-          >
-            {{ model.descModel }}
-          </option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td>Status</td>
-      <td><input type="text" v-model="status" /></td>
-    </tr>
-  </table>
+  <Alert msg="Item da tabela de preços atualizado com sucesso"></Alert>
+  <Body title="Editar lista de preços">
+    <template v-slot:buttons>
+      <button class="btn btn-dark" @click="handleUpdatePark">
+        <i class="bi bi-check-circle"></i> Salvar
+      </button>
+      <router-link :to="`/park/${route.params.id}`">
+        <button class="btn btn-dark">
+          <i class="bi bi-box-arrow-left"></i> Voltar
+        </button>
+      </router-link>
+    </template>
+    <template v-slot:content>
+      <div class="formIntern">
+        <table class="table">
+          <tr>
+            <td width="30%">Entrada</td>
+            <td width="70%">
+              <input
+                type="text"
+                readonly
+                :value="formattedTimestamp"
+                class="form-control"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Placa</td>
+            <td>
+              <input type="text" v-model="licensePlate" class="form-control" />
+            </td>
+          </tr>
+          <tr>
+            <td>Marca</td>
+            <td>
+              <select
+                v-model="selectedMark"
+                @change="updateModel"
+                class="form-control"
+              >
+                <option value="">Selecione uma marca</option>
+                <option
+                  v-for="mark in content.park.mark"
+                  :value="mark.id"
+                  :key="mark.id"
+                >
+                  {{ mark.descMark }}
+                </option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Modelo:</td>
+            <td>
+              <select v-model="selectedModel" class="form-control">
+                <option value="">Selecione um modelo</option>
+                <option
+                  v-for="model in filteredModels"
+                  :value="model.id"
+                  :key="model.id"
+                >
+                  {{ model.descModel }}
+                </option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Status:</td>
+            <td>
+              <select v-model="status" class="form-control">
+                <option :value="true">Ativo</option>
+                <option :value="false">Desativado</option>
+              </select>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </template>
+  </Body>
 </template>

@@ -3,6 +3,8 @@ import { useStore } from "@/composables/useStore";
 import { computed, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { formatTimestamp, timestamp1 } from "../util";
+import Alert from "../../../components/alert.vue";
+import Body from "../../../components/body.vue";
 
 const route = useRoute();
 
@@ -42,52 +44,88 @@ onMounted(() => {
 </script>
 
 <template>
-  <h1>Visualizar</h1>
-  <router-link :to="`/park/${route.params.id}/edit`"> Editar </router-link>
-  <router-link :to="`/park/`"> Voltar </router-link>
-  <button v-if="!content.park.selectedPark?.checkOut" @click="handleFinishPark">
-    Finalizar
-  </button>
-  <hr />
-  <table>
-    <tr>
-      <td>Entrada</td>
-      <td>
-        <input type="text" readonly :value="formattedTimestamp" />
-      </td>
-    </tr>
-    <tr>
-      <td>Placa</td>
-      <td>
-        <input
-          type="text"
-          readonly
-          :value="content.park.selectedPark?.licensePlate"
-        />
-      </td>
-    </tr>
-    <tr>
-      <td>Marca</td>
-      <td>
-        <input type="text" readonly :value="content.park.selectedPark?.mark" />
-      </td>
-    </tr>
-    <tr></tr>
-    <tr>
-      <td>Model</td>
-      <td>
-        <input type="text" readonly :value="content.park.selectedPark?.model" />
-      </td>
-    </tr>
-    <tr>
-      <td>Status</td>
-      <td>
-        <input
-          type="text"
-          readonly
-          :value="content.park.selectedPark?.statusPark"
-        />
-      </td>
-    </tr>
-  </table>
+  <Body title="Visualizar estadia">
+    <template v-slot:buttons>
+      <router-link :to="`/park/${route.params.id}/edit`">
+        <button class="btn btn-dark">
+          <i class="bi bi-pencil-square"></i> Editar
+        </button>
+      </router-link>
+      <RouterLink to="/park">
+        <button class="btn btn-dark">
+          <i class="bi bi-box-arrow-left"></i> Voltar
+        </button>
+      </RouterLink>
+      <button
+        v-if="!content.park.selectedPark?.checkOut"
+        @click="handleFinishPark"
+        class="btn btn-dark"
+      >
+        <i class="bi bi-check-circle"></i>
+        Saída
+      </button>
+    </template>
+    <template v-slot:content>
+      <div class="formIntern">
+        <table class="table">
+          <tr>
+            <td width="30%">Entrada:</td>
+            <td width="70%">
+              <input
+                type="text"
+                readonly
+                :value="formattedTimestamp"
+                class="form-control"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Placa:</td>
+            <td>
+              <input
+                type="text"
+                readonly
+                :value="content.park.selectedPark?.licensePlate"
+                class="form-control"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Marca:</td>
+            <td>
+              <input
+                type="text"
+                readonly
+                :value="content.park.selectedPark?.mark"
+                class="form-control"
+              />
+            </td>
+          </tr>
+          <tr></tr>
+          <tr>
+            <td>Model:</td>
+            <td>
+              <input
+                type="text"
+                readonly
+                :value="content.park.selectedPark?.model"
+                class="form-control"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Status:</td>
+            <td>
+              <input
+                type="text"
+                readonly
+                :value="content.park.selectedPark?.statusPark"
+                class="form-control"
+              />
+            </td>
+          </tr>
+        </table>
+      </div>
+    </template>
+  </Body>
 </template>
