@@ -29,18 +29,18 @@ onMounted(async () => {
 </script>
 
 <template>
-  <h1>EDITAR</h1>
+  <h2>Editar</h2>
   <button @click="handleEditBrand">Atualizar</button>
   <router-link :to="`/brand/${route.params.id}`"> Voltar </router-link>
   <hr />
   <table>
     <tr>
       <td>Marca</td>
-      <td><input type="text" v-model="desc" /></td>
+      <td><input type="text" v-model="desc" class="mb-1"/></td>
     </tr>
     <tr>
       <td>Status</td>
-      <td><input type="text" v-model="status" /></td>
+      <td><input type="text" v-model="status" class="mb-1"/></td>
     </tr>
   </table>
 </template>

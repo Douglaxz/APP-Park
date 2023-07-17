@@ -14,15 +14,15 @@ onMounted(() => {
 </script>
 
 <template>
-  <h1>Visualizar</h1>
+  <h2>Visualizar</h2>
   <router-link :to="`/brand/${route.params.id}/edit`"> Editar </router-link>
   <router-link :to="`/brand/`"> Voltar </router-link>
   <hr />
   <table>
     <tr>
-      <td>Marca</td>
+      <td>Marca:</td>
       <td>
-        <input
+        <input class="mb-1"
           type="text"
           readonly
           :value="content.brand.selectedBrand?.descBrand"
@@ -30,9 +30,9 @@ onMounted(() => {
       </td>
     </tr>
     <tr>
-      <td>Status</td>
+      <td>Status:</td>
       <td>
-        <input
+        <input class="mb-1"
           type="text"
           readonly
           :value="content.brand.selectedBrand?.statusBrand"
