@@ -28,6 +28,7 @@ async function handleCreatePrice() {
 }
 </script>
 <template>
+  <Alert msg="Item da tabela de preços criado com sucesso"></Alert>
   <Body title="Adicionar lista de preços">
     <template v-slot:buttons>
       <button class="btn btn-dark" @click="handleCreatePrice">
