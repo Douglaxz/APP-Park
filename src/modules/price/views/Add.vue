@@ -19,6 +19,7 @@ async function handleCreatePrice() {
     minuteFinalPrice: minuteFinalPrice.value,
     minuteStartPrice: minuteStartPrice.value,
   });
+
   if (!res) {
     const myModalAlternative = new bootstrap.Modal("#exampleModal");
     myModalAlternative.show();

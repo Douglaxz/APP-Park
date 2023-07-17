@@ -18,7 +18,8 @@ async function handleCreateModel() {
   });
   if (res) {
     alert("Modelo criado com sucesso");
-    window.location.href = "/model";
+    /*window.location.href = "/model";*/
+    this.$router.push("/model");
   }
 }
 
