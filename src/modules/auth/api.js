@@ -28,3 +28,14 @@ export const signIn = async (email, password) => {
     return;
   }
 };
+
+export const signOut = async () => {
+  console.log("função logout");
+  try {
+    await auth.signOut();
+    console.log("Logout realizado com sucesso!");
+    window.location.href = "/";
+  } catch (err) {
+    console.error("Erro ao fazer logout:", err);
+  }
+};

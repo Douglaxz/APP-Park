@@ -4,6 +4,7 @@ import { RouterLink, RouterView, useRoute, useRouter } from "vue-router";
 import { routes as authRoutes } from "@/modules/auth/router";
 import MainLayout from "./layout/MainLayout.vue";
 import { ref, watch } from "vue";
+import { signOut } from "@/modules/auth/api";
 
 const route = useRoute();
 
@@ -15,7 +16,6 @@ watch(route, (newRoute) => {
     })
   );
 });
-console.log(authRoutes, route);
 </script>
 
 <template>
@@ -37,37 +37,63 @@ console.log(authRoutes, route);
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="/Dashboard"
-          ><i class="bi bi-p-circle"></i> Estacionamento</a
+        <router-link
+          to="/Dashboard"
+          class="nav-link active text-white"
+          aria-current="page"
         >
+          <i class="bi bi-p-circle"></i> Estacionamento
+        </router-link>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/Dashboard"
-                >Home</a
+              <router-link
+                to="/Dashboard"
+                class="nav-link active text-white"
+                aria-current="page"
               >
+                <i class="bi bi-house"></i> Home
+              </router-link>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/Price"
-                >Lista de Preços</a
+              <router-link
+                to="/Price"
+                class="nav-link active text-white"
+                aria-current="page"
               >
+                <i class="bi bi-card-list"></i> Lista de preços
+              </router-link>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Marcas</a>
+              <router-link
+                to="/Brand"
+                class="nav-link active text-white"
+                aria-current="page"
+              >
+                <i class="bi bi-list-ul"></i> Marcas
+              </router-link>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/model"
-                >Modelos</a
+              <router-link
+                to="/Model"
+                class="nav-link active text-white"
+                aria-current="page"
               >
+                <i class="bi bi-list-ul"></i> Modelos
+              </router-link>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/park"
-                >Estadia</a
+              <router-link
+                to="/Park"
+                class="nav-link active text-white"
+                aria-current="page"
               >
+                <i class="bi bi-car-front"></i> Estadia
+              </router-link>
             </li>
           </ul>
           <form class="d-flex" role="search">
-            <button class="btn btn-dark" type="submit">
+            <button class="btn btn-dark" @click="signOut">
               <i class="bi bi-box-arrow-left"></i> Sair
             </button>
           </form>
