@@ -1,4 +1,5 @@
 <script setup>
+
 import { RouterLink, RouterView, useRoute, useRouter } from "vue-router";
 import { routes as authRoutes } from "@/modules/auth/router";
 import MainLayout from "./layout/MainLayout.vue";
