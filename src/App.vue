@@ -18,6 +18,13 @@ watch(route, (newRoute) => {
   );
 });
 
+watch(
+  () => window.innerWidth,
+  (newWidth) => {
+    isSmallScreen.value = newWidth <= 768;
+  }
+);
+
 onMounted(() => {
   isSmallScreen.value = window.innerWidth <= 768;
   provide(/* key */ "isSmallScreenMessage", /* value */ isSmallScreen.value);

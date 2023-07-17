@@ -6,7 +6,7 @@ import Alert from "../../../components/alert.vue";
 import Body from "../../../components/body.vue";
 import { inject } from "vue";
 
-const isSmallScreen = inject("isSmallScreenMessage");
+const isSmallScreen = ref(inject("isSmallScreenMessage"));
 
 onMounted(async () => {
   content.model.getModels();
@@ -14,12 +14,13 @@ onMounted(async () => {
 </script>
 
 <template>
+  isSmallScreen{{ isSmallScreen }}
   <Body title="Modelos de veículos">
     <template v-slot:buttons>
       <RouterLink to="/model/add">
         <button class="btn btn-dark">
           <i class="bi bi-plus-circle"></i>
-          <p v-if="!isSmallScreen">Adicionar</p>
+          <span v-if="!isSmallScreen">Adicionar</span>
         </button>
       </RouterLink>
     </template>
@@ -48,7 +49,7 @@ onMounted(async () => {
               <router-link :to="`/model/${model.id}`">
                 <button class="btn btn-dark">
                   <i class="bi bi-eye"></i>
-                  <p v-if="!isSmallScreen">Visualizar</p>
+                  <span v-if="!isSmallScreen">Visualizar</span>
                 </button>
               </router-link>
             </td>
