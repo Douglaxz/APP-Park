@@ -57,7 +57,7 @@ watch(route, (newRoute) => {
             </li>
             <li class="nav-item">
               <router-link
-                to="/Price"
+                to="/price"
                 class="nav-link active text-white"
                 aria-current="page"
               >

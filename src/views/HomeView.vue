@@ -24,18 +24,25 @@ async function handleSignIn() {
 <template>
   <main>
     <div class="mainScreen">
-      <div class="image"><img src="../assets/fundo.jpeg" width="920" /></div>
-      <div class="boxContainer">
-        <div class="form">
-          <div class="formTitulo">
-            <i class="bi bi-p-circle"></i> Estacionamento
-          </div>
-          <div class="formInput">
-            Bem vindo ao sistema de gerenciamento de estadia de veículos
-            <input type="email" v-model="email" placeholder="e-mail" />
-            <input type="password" v-model="password" placeholder="senha" />
-            <button @click="handleSignIn" class="btn btn-primary">Login</button>
-          </div>
+      <div class="loginContainer">
+        <div class="formTitulo">
+          <p><i class="bi bi-p-circle"></i> Estacionamento</p>
+        </div>
+        <div class="formInput">
+          Bem vindo ao sistema de gerenciamento de estadia de veículos
+          <input
+            type="email"
+            v-model="email"
+            placeholder="e-mail"
+            class="form-control"
+          />
+          <input
+            type="password"
+            v-model="password"
+            placeholder="senha"
+            class="form-control"
+          />
+          <button @click="handleSignIn" class="btn btn-dark">Login</button>
         </div>
       </div>
     </div>

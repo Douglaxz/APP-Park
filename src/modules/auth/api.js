@@ -10,12 +10,10 @@ export const signUp = (email, password) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      console.log(userCredential);
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log(error);
     });
 };
 
@@ -34,7 +32,7 @@ export const signOut = async () => {
   try {
     await auth.signOut();
     console.log("Logout realizado com sucesso!");
-    window.location.href = "/";
+    this.$router.push("/");
   } catch (err) {
     console.error("Erro ao fazer logout:", err);
   }

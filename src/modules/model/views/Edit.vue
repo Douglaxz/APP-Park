@@ -21,7 +21,7 @@ async function handleUpdateModel() {
   if (!res) {
     const myModalAlternative = new bootstrap.Modal("#exampleModal");
     myModalAlternative.show();
-    window.location.href = "/model";
+    this.$router.push("/model");
   }
 }
 
@@ -58,7 +58,7 @@ onMounted(() => {
                   :value="mark.id"
                   :key="mark.id"
                 >
-                  {{ mark.descMark }}
+                  {{ mark.descBrand }}
                 </option>
               </select>
             </td>

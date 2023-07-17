@@ -6,11 +6,16 @@ body {
   min-height: 100vh;
 }
 .mainScreen {
-  border: 0px solid black;
-
+  background-image: url("/src/assets/fundo.jpeg");
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 97vw;
+  height: 97vh;
+  margin: 0;
 }
 
 .image {
@@ -31,17 +36,28 @@ body {
   justify-content: center;
 }
 
-.form {
-  border: 2px solid black;
-  width: 60%;
-  height: 70%;
+.loginContainer {
+  background-color: #ccc;
+  padding: 20px;
+  border-radius: 10px;
+  width: 25vw;
+  height: 50vh;
+  opacity: 0.8;
+}
+
+.msgDashboard {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  background-color: #ccc;
+  border-radius: 10px;
+  width: 25vw;
+  height: 10vh;
+  opacity: 0.8;
 }
 
 .formInput {
-  padding: 15px;
+  width: 100%;
   height: 80%;
   display: flex;
   flex-direction: column;
@@ -50,6 +66,7 @@ body {
 }
 
 .formTitulo {
+  padding-top: 15px;
   background-color: black;
   color: white;
   width: 100%;
@@ -59,6 +76,10 @@ body {
   justify-content: center;
 }
 
+p {
+  font-size: 1.2rem;
+}
+
 #app {
   margin-top: 0;
   width: 97vw;
@@ -66,6 +87,10 @@ body {
 }
 
 .about {
+  background-image: url("/src/assets/fundo.jpeg");
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: center;
   display: flex;
   width: 100%;
   height: 36vw;
