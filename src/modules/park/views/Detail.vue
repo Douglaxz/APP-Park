@@ -8,6 +8,9 @@ import Body from "../../../components/body.vue";
 
 const route = useRoute();
 
+import { inject } from "vue";
+const isSmallScreen = inject("isSmallScreenMessage");
+
 const { content } = useStore();
 const newValue = ref("");
 let checkOut = ref("");
@@ -26,7 +29,6 @@ async function handleFinishPark() {
   const minutes = Math.floor(resultMilliseconds / (1000 * 60));
 
   const valorEstacionamento = await content.park.calculatePricePark(minutes);
-  console.log(valorEstacionamento);
 
   const res = await content.park.updatePark(id, {
     checkOut: checkOut,
@@ -48,12 +50,14 @@ onMounted(() => {
     <template v-slot:buttons>
       <router-link :to="`/park/${route.params.id}/edit`">
         <button class="btn btn-dark">
-          <i class="bi bi-pencil-square"></i> Editar
+          <i class="bi bi-pencil-square"></i>
+          <p v-if="!isSmallScreen">Editar</p>
         </button>
       </router-link>
       <RouterLink to="/park">
         <button class="btn btn-dark">
-          <i class="bi bi-box-arrow-left"></i> Voltar
+          <i class="bi bi-box-arrow-left"></i>
+          <p v-if="!isSmallScreen">Voltar</p>
         </button>
       </RouterLink>
       <button
@@ -62,7 +66,7 @@ onMounted(() => {
         class="btn btn-dark"
       >
         <i class="bi bi-check-circle"></i>
-        Saída
+        <p v-if="!isSmallScreen">Finalizar</p>
       </button>
     </template>
     <template v-slot:content>
