@@ -53,7 +53,7 @@ console.log(authRoutes, route);
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Marcas</a>
+              <a class="nav-link active" aria-current="page" href="brand">Marcas</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="/model"
