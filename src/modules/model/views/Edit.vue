@@ -21,7 +21,7 @@ async function handleUpdateModel() {
   if (!res) {
     const myModalAlternative = new bootstrap.Modal("#exampleModal");
     myModalAlternative.show();
-    window.location.href = "/model";
+    this.$router.push("/model");
   }
 }
 
