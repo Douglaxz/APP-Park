@@ -12,6 +12,10 @@ const selectedMark = ref(content.model.selectedModel?.idMark);
 const status = ref(content.model.selectedModel?.statusModel);
 const id = route.params.id;
 
+import { inject } from "vue";
+
+const isSmallScreen = inject("isSmallScreenMessage");
+
 async function handleUpdateModel() {
   const res = await content.model.updateModel(id, {
     descModel: desc.value,
@@ -37,11 +41,13 @@ onMounted(() => {
   <Body title="Editar modelo de veículos">
     <template v-slot:buttons>
       <button class="btn btn-dark" @click="handleUpdateModel">
-        <i class="bi bi-check-circle"></i> Salvar
+        <i class="bi bi-check-circle"></i>
+        <p v-if="!isSmallScreen">Salvar</p>
       </button>
       <router-link :to="`/model/${route.params.id}`">
         <button class="btn btn-dark">
-          <i class="bi bi-box-arrow-left"></i> Voltar
+          <i class="bi bi-box-arrow-left"></i>
+          <p v-if="!isSmallScreen">Voltar</p>
         </button>
       </router-link></template
     >

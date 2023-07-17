@@ -2,10 +2,12 @@
 import { RouterLink, RouterView, useRoute, useRouter } from "vue-router";
 import { routes as authRoutes } from "@/modules/auth/router";
 import MainLayout from "./layout/MainLayout.vue";
-import { ref, watch } from "vue";
+import { onMounted, ref, watch } from "vue";
 import { signOut } from "@/modules/auth/api";
+import { provide } from "vue";
 
 const route = useRoute();
+const isSmallScreen = ref(false);
 
 const isAuthRoute = ref(false);
 watch(route, (newRoute) => {
@@ -14,6 +16,11 @@ watch(route, (newRoute) => {
       return newRoute.path == authRoute.path;
     })
   );
+});
+
+onMounted(() => {
+  isSmallScreen.value = window.innerWidth <= 768;
+  provide(/* key */ "isSmallScreenMessage", /* value */ isSmallScreen.value);
 });
 </script>
 

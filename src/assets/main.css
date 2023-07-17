@@ -43,6 +43,7 @@ body {
   width: 25vw;
   height: 50vh;
   opacity: 0.8;
+  text-align: center;
 }
 
 .msgDashboard {
@@ -99,9 +100,6 @@ p {
   border: 1px solid black;
 }
 
-main {
-}
-
 .internBox {
   margin-left: 25%;
   border: 0px solid black;
@@ -147,4 +145,31 @@ main {
   justify-items: center;
   width: 70%;
   height: 50%;
+}
+
+@media only screen and (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  .loginContainer {
+    width: 70vw;
+    height: 70vh;
+  }
+
+  .about {
+    min-height: 75vh;
+  }
+
+  .msgDashboard {
+    width: 80vw;
+    height: 20vh;
+    text-align: center;
+  }
+
+  .internBox {
+    margin-left: 1%;
+    width: 97%;
+    min-height: 74vh;
+  }
 }
