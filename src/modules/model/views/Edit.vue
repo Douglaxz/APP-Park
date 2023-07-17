@@ -58,7 +58,7 @@ onMounted(() => {
                   :value="mark.id"
                   :key="mark.id"
                 >
-                  {{ mark.descMark }}
+                  {{ mark.descBrand }}
                 </option>
               </select>
             </td>
