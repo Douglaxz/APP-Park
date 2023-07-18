@@ -8,11 +8,12 @@ const route = useRoute();
 const { content } = useStore();
 const newTitle = ref("");
 const newValue = ref("");
+const newBrand = ref("");
 
 
 async function handleCreateBrand() {
   const res = await content.brand.addBrands({
-    descBrand: newTitle.value,
+    descBrand: newBrand.value,
     statusBrand: "true",
     valBrand: newValue.value,
   });
@@ -45,7 +46,7 @@ async function handleCreateBrand() {
           <tr>
             <td>Marca:</td>
             <td>
-              <input type="text" v-model="desc" class="form-control" />
+              <input type="text" v-model="newBrand" class="form-control" />
             </td>
           </tr>
           <tr>
