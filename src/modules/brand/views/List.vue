@@ -1,60 +1,61 @@
 <script setup>
 import { useStore } from "@/composables/useStore";
 import { onMounted, ref } from "vue";
-import { useRoute } from "vue-router";
-const { content } = useStore();
+import Body from "../../../components/body.vue";
 
-const route = useRoute();
+const { content } = useStore();
 const newTitle = ref("");
 
-async function handleCreateBrand() {
-  const res = await content.brand.addBrands({
-    descBrand: newTitle.value,
-    statusBrand: true,
-    
-  });
-  if (res) {
-    alert("criado com sucesso");
-    content.brand.brands();
-    
-  }
-  
-  /* this.items = res.sort((a, b) => a.name.localeCompare(b.name));
-   console.log("AQUI MESMO") */
-}
 
 onMounted(async () => {
   content.brand.brands();
+  
+  this.items = res.sort((a, b) => a.name.localeCompare(b.name));
+   
 });
 </script>
 
 <template>
-
-   <STYLE>A {text-decoration: none;} </STYLE>
- 
-    <main>
-      
-      <label for="">
-        Marca:
-        <input type="text" v-model="newTitle" class="mb-3 mt-2"/>
-      </label>
-      <button @click="handleCreateBrand" class="ml-9">Criar</button>
-      <div v-for="brand in content.brand.items">
-        <router-link :to="`/brand/${brand.id}`">
-          <h6>{{ brand.descBrand }}</h6>
-        </router-link>
-      </div>
-    </main>
-
- 
+  <Body title="Marca de veículos">
+    <template v-slot:buttons>
+      <RouterLink to="/brand/add">
+        <button class="btn btn-dark">
+          <i class="bi bi-plus-circle"></i> Adicionar
+        </button>
+      </RouterLink>
+    </template>
+    <template v-slot:content>
+      <table class="table table-striped table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th width="30%">Marca</th>
+            <th width="20%">Status</th>
+            <th width="20%">Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="brand in content.brand.items">
+            <td class="text-left align-middle">{{ brand.descBrand }}</td>
+            <td class="text-center align-middle">
+              <i
+                v-if="brand.statusBrand"
+                class="bi bi-toggle2-on text-success fs-1"
+              ></i>
+              <i v-else class="bi bi-toggle2-off text-danger fs-1"></i>
+            </td>
+            <td>
+              <router-link :to="`/brand/${brand.id}`">
+                <button class="btn btn-dark">
+                  <i class="bi bi-eye"></i> Visualizar
+                </button>
+              </router-link>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </template>
+  </Body>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>
+<style></style>
+

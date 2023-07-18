@@ -2,6 +2,7 @@
 import { useStore } from "@/composables/useStore";
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
+import Body from "../../../components/body.vue";
 
 const route = useRoute();
 const { content } = useStore();
@@ -9,36 +10,56 @@ const { content } = useStore();
 onMounted(() => {
   //chama action
   content.brand.getBrand(route.params.id);
-  console.log("ONDE - Detail")
+  console.log("ONDE - Detail");
 });
 </script>
 
 <template>
-  <h2>Visualizar</h2>
-  <router-link :to="`/brand/${route.params.id}/edit`"> Editar </router-link>
-  <router-link :to="`/brand/`"> Voltar </router-link>
-  <hr />
-  <table>
-    <tr>
-      <td>Marca:</td>
-      <td>
-        <input class="mb-1"
-          type="text"
-          readonly
-          :value="content.brand.selectedBrand?.descBrand"
-        />
-      </td>
-    </tr>
-    <tr>
-      <td>Status:</td>
-      <td>
-        <input class="mb-1"
-          type="text"
-          readonly
-          :value="content.brand.selectedBrand?.statusBrand"
-        />
-      </td>
-    </tr>
-  </table>
-</template>
+  <Body title="Visualizar marca de veículos">
+    <template v-slot:buttons>
+      <router-link :to="`/brand/${route.params.id}/edit`">
+        <button class="btn btn-dark">
+          <i class="bi bi-pencil-square"></i> Editar
+        </button>
+      </router-link>
+      <router-link :to="`/brand/`">
+        <button class="btn btn-dark">
+          <i class="bi bi-box-arrow-left"></i> Voltar
+        </button>
+      </router-link>
+    </template>
+    <template v-slot:content>
+      <div class="formIntern">
+        <table class="table">
+          <tr>
+            <td width="30%">Marca:</td>
+            <td width="70%">
+              <select v-model="selectedBrand" class="form-control">
+                <option value="">Selecione uma marca</option>
+                <option
+                  v-for="brand in content.brand.items"
+                  :value="brand.id"
+                  :key="brand.id"
+                >
+                  {{ brand.descBrand }}
+                </option>
+              </select>
+            </td>
+          </tr>
 
+          <tr>
+            <td>Status:</td>
+            <td>
+              <input
+                type="text"
+                readonly
+                :value="status"
+                class="form-control"
+              />
+            </td>
+          </tr>
+        </table>
+      </div>
+    </template>
+  </Body>
+</template>
