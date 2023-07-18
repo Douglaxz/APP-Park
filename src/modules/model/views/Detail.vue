@@ -12,6 +12,10 @@ const newValue = ref("");
 const local = ref(false);
 const status = ref("");
 
+import { inject } from "vue";
+
+const isSmallScreen = inject("isSmallScreenMessage");
+
 async function getModel() {
   await content.model.getModel(route.params.id);
   local.value = content.model.selectedModel?.statusModel;
@@ -33,12 +37,14 @@ onMounted(() => {
     <template v-slot:buttons>
       <router-link :to="`/model/${route.params.id}/edit`">
         <button class="btn btn-dark">
-          <i class="bi bi-pencil-square"></i> Editar
+          <i class="bi bi-pencil-square"></i>
+          <p v-if="!isSmallScreen">Editar</p>
         </button>
       </router-link>
       <router-link :to="`/model/`">
         <button class="btn btn-dark">
-          <i class="bi bi-box-arrow-left"></i> Voltar
+          <i class="bi bi-box-arrow-left"></i>
+          <p v-if="!isSmallScreen">Voltar</p>
         </button>
       </router-link>
     </template>
