@@ -21,14 +21,14 @@ export const modelStore = reactive({
 
     models = await Promise.all(
       models.map(async (item) => {
-        const { descMark } = await getMarkName(item.idMark);
-        return { ...item, marca: descMark };
+        const { descBrand } = await getMarkName(item.idMark);
+        return { ...item, marca: descBrand };
       })
     );
     this.items = models;
   },
   async getModelsWithStatusTrue() {
-    const q = query(collection(db, "mark"), where("statusMark", "==", true));
+    const q = query(collection(db, "brand"), where("statusBrand", "==", true));
 
     const res = await list(q);
     console.log(res);

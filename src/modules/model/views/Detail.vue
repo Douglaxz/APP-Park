@@ -51,7 +51,7 @@ onMounted(() => {
               <input
                 type="text"
                 readonly
-                :value="content.model.selectedModel?.mark"
+                :value="content.model.selectedModel?.brand"
                 class="form-control"
               />
             </td>
