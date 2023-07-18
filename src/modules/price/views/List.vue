@@ -4,6 +4,9 @@ import { onMounted, ref, useModel } from "vue";
 const { content } = useStore();
 import Alert from "../../../components/alert.vue";
 import Body from "../../../components/body.vue";
+import { inject } from "vue";
+
+const isSmallScreen = ref(inject("isSmallScreenMessage"));
 
 onMounted(async () => {
   content.price.getPrices();
@@ -15,7 +18,8 @@ onMounted(async () => {
     <template v-slot:buttons>
       <RouterLink to="/price/add">
         <button class="btn btn-dark">
-          <i class="bi bi-plus-circle"></i> Adicionar
+          <i class="bi bi-plus-circle"></i>
+          <span v-if="!isSmallScreen">Adicionar</span>
         </button>
       </RouterLink></template
     >
@@ -26,8 +30,6 @@ onMounted(async () => {
             <th width="30%">Descrição</th>
             <th width="10%">Valor R$</th>
 
-            <th width="15%">Minuto Inicial</th>
-            <th width="15%">Minuto Final</th>
             <th width="10%">Status</th>
             <th width="20%">Ação</th>
           </tr>
@@ -36,12 +38,6 @@ onMounted(async () => {
           <tr v-for="price in content.price.items">
             <td class="text-left align-middle">{{ price.descPrice }}</td>
             <td class="text-right align-middle">R$ {{ price.valPrice }}</td>
-            <td class="text-center align-middle">
-              {{ price.minuteStartPrice }}
-            </td>
-            <td class="text-center align-middle">
-              {{ price.minuteFinalPrice }}
-            </td>
             <td class="text-center align-middle">
               <i
                 v-if="price.statusPrice"
@@ -52,7 +48,8 @@ onMounted(async () => {
             <td class="text-center align-middle">
               <router-link :to="`/price/${price.id}`">
                 <button class="btn btn-dark">
-                  <i class="bi bi-eye"></i> Visualizar
+                  <i class="bi bi-eye"></i>
+                  <span v-if="!isSmallScreen">Visualizar</span>
                 </button>
               </router-link>
             </td>

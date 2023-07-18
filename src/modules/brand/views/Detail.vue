@@ -3,14 +3,28 @@ import { useStore } from "@/composables/useStore";
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import Body from "../../../components/body.vue";
+import { inject } from "vue";
+
+const isSmallScreen = ref(inject("isSmallScreenMessage"));
 
 const route = useRoute();
 const { content } = useStore();
+const local = ref(false);
+const status = ref("");
+
+async function getBrand() {
+  await content.brand.getBrand(route.params.id);
+  local.value = content.brand.selectedBrand?.statusBrand;
+  console.log(local.value);
+  if (local.value) {
+    status.value = "Ativo";
+  } else {
+    status.value = "Desativado";
+  }
+}
 
 onMounted(() => {
-  //chama action
-  content.brand.getBrand(route.params.id);
-  console.log("ONDE - Detail");
+  getBrand();
 });
 </script>
 
@@ -19,12 +33,14 @@ onMounted(() => {
     <template v-slot:buttons>
       <router-link :to="`/brand/${route.params.id}/edit`">
         <button class="btn btn-dark">
-          <i class="bi bi-pencil-square"></i> Editar
+          <i class="bi bi-pencil-square"></i>
+          <span v-if="!isSmallScreen">Editar</span>
         </button>
       </router-link>
       <router-link :to="`/brand/`">
         <button class="btn btn-dark">
-          <i class="bi bi-box-arrow-left"></i> Voltar
+          <i class="bi bi-box-arrow-left"></i>
+          <span v-if="!isSmallScreen">Voltar</span>
         </button>
       </router-link>
     </template>
@@ -34,19 +50,14 @@ onMounted(() => {
           <tr>
             <td width="30%">Marca:</td>
             <td width="70%">
-              <select v-model="selectedBrand" class="form-control">
-                <option value="">Selecione uma marca</option>
-                <option
-                  v-for="brand in content.brand.items"
-                  :value="brand.id"
-                  :key="brand.id"
-                >
-                  {{ brand.descBrand }}
-                </option>
-              </select>
+              <input
+                type="text"
+                readonly
+                :value="content.brand.selectedBrand?.descBrand"
+                class="form-control"
+              />
             </td>
           </tr>
-
           <tr>
             <td>Status:</td>
             <td>

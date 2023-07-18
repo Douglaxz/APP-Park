@@ -2,17 +2,22 @@
 import { useStore } from "@/composables/useStore";
 import { computed, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
-import { formatTimestamp, timestamp1 } from "../util";
+import { formatTimestamp } from "../util";
 import Alert from "../../../components/alert.vue";
 import Body from "../../../components/body.vue";
 
 const route = useRoute();
+
+import { inject } from "vue";
+const isSmallScreen = inject("isSmallScreenMessage");
 
 const { content } = useStore();
 const newValue = ref("");
 let checkOut = ref("");
 const value = ref("");
 const id = route.params.id;
+const local = ref(false);
+const status = ref("");
 
 let timestamp = ref();
 let formattedTimestamp = ref();
@@ -26,7 +31,6 @@ async function handleFinishPark() {
   const minutes = Math.floor(resultMilliseconds / (1000 * 60));
 
   const valorEstacionamento = await content.park.calculatePricePark(minutes);
-  console.log(valorEstacionamento);
 
   const res = await content.park.updatePark(id, {
     checkOut: checkOut,
@@ -38,8 +42,19 @@ async function handleFinishPark() {
   }
 }
 
+async function getPark() {
+  await content.park.getPark(route.params.id);
+  local.value = content.park.selectedPark?.statusPark;
+  console.log(local.value);
+  if (local.value) {
+    status.value = "Ativo";
+  } else {
+    status.value = "Desativado";
+  }
+}
+
 onMounted(() => {
-  content.park.getPark(route.params.id);
+  getPark();
 });
 </script>
 
@@ -48,12 +63,14 @@ onMounted(() => {
     <template v-slot:buttons>
       <router-link :to="`/park/${route.params.id}/edit`">
         <button class="btn btn-dark">
-          <i class="bi bi-pencil-square"></i> Editar
+          <i class="bi bi-pencil-square"></i>
+          <p v-if="!isSmallScreen">Editar</p>
         </button>
       </router-link>
       <RouterLink to="/park">
         <button class="btn btn-dark">
-          <i class="bi bi-box-arrow-left"></i> Voltar
+          <i class="bi bi-box-arrow-left"></i>
+          <p v-if="!isSmallScreen">Voltar</p>
         </button>
       </RouterLink>
       <button
@@ -62,7 +79,7 @@ onMounted(() => {
         class="btn btn-dark"
       >
         <i class="bi bi-check-circle"></i>
-        Saída
+        <p v-if="!isSmallScreen">Finalizar</p>
       </button>
     </template>
     <template v-slot:content>
@@ -103,7 +120,7 @@ onMounted(() => {
           </tr>
           <tr></tr>
           <tr>
-            <td>Model:</td>
+            <td>Modelo:</td>
             <td>
               <input
                 type="text"
@@ -119,7 +136,7 @@ onMounted(() => {
               <input
                 type="text"
                 readonly
-                :value="content.park.selectedPark?.statusPark"
+                :value="status"
                 class="form-control"
               />
             </td>

@@ -4,6 +4,9 @@ import { onMounted, ref, useModel } from "vue";
 const { content } = useStore();
 import Alert from "../../../components/alert.vue";
 import Body from "../../../components/body.vue";
+import { inject } from "vue";
+
+const isSmallScreen = ref(inject("isSmallScreenMessage"));
 
 onMounted(async () => {
   content.park.getParks();
@@ -15,7 +18,8 @@ onMounted(async () => {
     <template v-slot:buttons>
       <RouterLink to="/park/add">
         <button class="btn btn-dark">
-          <i class="bi bi-plus-circle"></i> Adicionar
+          <i class="bi bi-plus-circle"></i>
+          <span v-if="!isSmallScreen">Adicionar</span>
         </button>
       </RouterLink>
     </template>
@@ -23,36 +27,21 @@ onMounted(async () => {
       <table class="table table-striped table-hover">
         <thead class="table-dark">
           <tr>
-            <th>Marca</th>
             <th>Modelo</th>
             <th>Placa</th>
-            <th>Data Entrada</th>
-            <th>Hora Entrada</th>
-            <th>Data Saída</th>
-            <th>Hora Saída</th>
-            <th>Valor</th>
+            <th>Entrada</th>
             <th>Status</th>
             <th>Ação</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="park in content.park.items">
-            <td>{{ park.marca }}</td>
             <td>{{ park.descModel }}</td>
             <td>{{ park.licensePlate }}</td>
             <td>
               {{ park.checkIn.toDate().toLocaleDateString() }}
-            </td>
-            <td>
               {{ park.checkIn.toDate().toLocaleTimeString() }}
             </td>
-            <td>
-              {{ park.checkOut?.toDate().toLocaleDateString() }}
-            </td>
-            <td>
-              {{ park.checkOut?.toDate().toLocaleTimeString() }}
-            </td>
-            <td>{{ park.valuePark }}</td>
             <td class="text-center align-middle">
               <i
                 v-if="park.statusPark"
@@ -63,7 +52,8 @@ onMounted(async () => {
             <td class="text-center align-middle">
               <router-link :to="`/park/${park.id}`">
                 <button class="btn btn-dark">
-                  <i class="bi bi-eye"></i> Visualizar
+                  <i class="bi bi-eye"></i>
+                  <span v-if="!isSmallScreen">Visualizar</span>
                 </button>
               </router-link>
             </td>

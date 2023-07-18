@@ -25,6 +25,15 @@ watch(
   }
 );
 
+async function logOffNew() {
+  console.log("Função logoff");
+  try {
+    console.log("Logoff realizado com sucesso!");
+    window.location.href = "/";
+  } catch (err) {
+    console.error("Erro ao fazer logoff:", err);
+  }
+}
 onMounted(() => {
   isSmallScreen.value = window.innerWidth <= 768;
   provide(/* key */ "isSmallScreenMessage", /* value */ isSmallScreen.value);
@@ -106,7 +115,7 @@ onMounted(() => {
             </li>
           </ul>
           <form class="d-flex" role="search">
-            <button class="btn btn-dark" @click="signOut">
+            <button class="btn btn-dark" @click="logOffNew">
               <i class="bi bi-box-arrow-left"></i> Sair
             </button>
           </form>

@@ -29,8 +29,8 @@ export const parkStore = reactive({
 
     parks = await Promise.all(
       parks.map(async (item) => {
-        const { descMark } = await getMarkName(item.idMark);
-        return { ...item, marca: descMark };
+        const { descBrand } = await getMarkName(item.idMark);
+        return { ...item, marca: descBrand };
       })
     );
 
@@ -49,12 +49,12 @@ export const parkStore = reactive({
 
   async getMarksWithStatusTrue() {
     const q = query(
-      collection(db, "mark"),
-      where("statusMark", "==", true),
-      orderBy("descMark")
+      collection(db, "brand"),
+      where("statusBrand", "==", true),
+      orderBy("descBrand")
     );
-    const res = await list(q);
-    this.mark = res;
+    const res1 = await list(q);
+    this.mark = res1;
   },
 
   async calculatePricePark(minutes) {

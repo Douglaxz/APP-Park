@@ -25,13 +25,13 @@ export async function detailWithMark(parkId) {
   const modelId = docSnapshot.data().idModel;
   const modelSnapshot = await getDoc(doc(db, "model", modelId));
   const markId = modelSnapshot.data().idMark;
-  const markSnapshot = await getDoc(doc(db, "mark", markId));
+  const markSnapshot = await getDoc(doc(db, "brand", markId));
 
   return {
     ...docSnapshot.data(),
     id: docSnapshot.id,
     model: modelSnapshot.data().descModel,
-    mark: markSnapshot.data().descMark,
+    mark: markSnapshot.data().descBrand,
     idMark: markId,
   };
 }
@@ -52,7 +52,7 @@ export async function update(id, payload) {
 }
 
 export async function getMarkName(markId) {
-  const docSnapshot = await getDoc(doc(db, "mark", markId));
+  const docSnapshot = await getDoc(doc(db, "brand", markId));
   return { id: docSnapshot.id, ...docSnapshot.data() };
 }
 

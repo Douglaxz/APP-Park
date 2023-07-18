@@ -4,6 +4,9 @@ import { onMounted, ref, useModel } from "vue";
 import { db } from "../../../firebase.config";
 import Alert from "../../../components/alert.vue";
 import Body from "../../../components/body.vue";
+import { inject } from "vue";
+
+const isSmallScreen = ref(inject("isSmallScreenMessage"));
 
 const { content } = useStore();
 
@@ -31,11 +34,13 @@ onMounted(() => {
   <Body title="Adicionar modelo de veículo">
     <template v-slot:buttons>
       <button class="btn btn-dark" @click="handleCreateModel">
-        <i class="bi bi-plus-circle"></i> Salvar
+        <i class="bi bi-plus-circle"></i>
+        <span v-if="!isSmallScreen">Salvar</span>
       </button>
       <RouterLink to="/model">
         <button class="btn btn-dark">
-          <i class="bi bi-box-arrow-left"></i> Voltar
+          <i class="bi bi-box-arrow-left"></i>
+          <span v-if="!isSmallScreen">Voltar</span>
         </button>
       </RouterLink>
     </template>

@@ -12,6 +12,9 @@ const licensePlate = ref("");
 const selectedMark = ref("");
 const selectedModel = ref("");
 
+import { inject } from "vue";
+const isSmallScreen = inject("isSmallScreenMessage");
+
 const filteredModels = computed(() => {
   return (
     content.park.model?.filter(
@@ -43,11 +46,13 @@ onMounted(() => {
   <Body title="Adicionar estadia">
     <template v-slot:buttons>
       <button class="btn btn-dark" @click="handleCreatePark">
-        <i class="bi bi-plus-circle"></i> Salvar
+        <i class="bi bi-plus-circle"></i>
+        <p v-if="!isSmallScreen">Salvar</p>
       </button>
       <RouterLink to="/park">
         <button class="btn btn-dark">
-          <i class="bi bi-box-arrow-left"></i> Voltar
+          <i class="bi bi-box-arrow-left"></i>
+          <p v-if="!isSmallScreen">Voltar</p>
         </button>
       </RouterLink>
     </template>
@@ -85,7 +90,7 @@ onMounted(() => {
                   :value="mark.id"
                   :key="mark.id"
                 >
-                  {{ mark.descMark }}
+                  {{ mark.descBrand }}
                 </option>
               </select>
             </td>
