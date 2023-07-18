@@ -52,7 +52,7 @@ export async function update(id, payload) {
 }
 
 export async function getMarkName(markId) {
-  const docSnapshot = await getDoc(doc(db, "mark", markId));
+  const docSnapshot = await getDoc(doc(db, "brand", markId));
   return { id: docSnapshot.id, ...docSnapshot.data() };
 }
 

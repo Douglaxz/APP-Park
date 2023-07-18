@@ -25,13 +25,13 @@ export const modelStore = reactive({
         return { ...item, marca: descBrand };
       })
     );
+
     this.items = models;
   },
   async getModelsWithStatusTrue() {
     const q = query(collection(db, "brand"), where("statusBrand", "==", true));
 
     const res = await list(q);
-    console.log(res);
     this.items = res;
   },
   async getModel(id) {

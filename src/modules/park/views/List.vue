@@ -5,7 +5,9 @@ const { content } = useStore();
 import Alert from "../../../components/alert.vue";
 import Body from "../../../components/body.vue";
 import { inject } from "vue";
-const isSmallScreen = inject("isSmallScreenMessage");
+
+
+const isSmallScreen = ref(inject("isSmallScreenMessage"));
 
 onMounted(async () => {
   content.park.getParks();
@@ -18,7 +20,9 @@ onMounted(async () => {
       <RouterLink to="/park/add">
         <button class="btn btn-dark">
           <i class="bi bi-plus-circle"></i>
-          <p v-if="!isSmallScreen">Adicionar</p>
+
+          <span v-if="!isSmallScreen">Adicionar</span>
+
         </button>
       </RouterLink>
     </template>
@@ -29,7 +33,9 @@ onMounted(async () => {
             <th>Modelo</th>
             <th>Placa</th>
             <th>Entrada</th>
-            <th>Valor</th>
+
+            <th>Status</th>
+
             <th>Ação</th>
           </tr>
         </thead>
@@ -39,14 +45,16 @@ onMounted(async () => {
             <td>{{ park.licensePlate }}</td>
             <td>
               {{ park.checkIn.toDate().toLocaleDateString() }}
-              {{ park.checkIn.toDate().toLocaleTimeString().slice(0, 5) }}
+              {{ park.checkIn.toDate().toLocaleTimeString() }}
             </td>
-            <td>{{ park.valuePark }}</td>
+
             <td class="text-center align-middle">
               <router-link :to="`/park/${park.id}`">
                 <button class="btn btn-dark">
                   <i class="bi bi-eye"></i>
-                  <p v-if="!isSmallScreen">Visualizar</p>
+
+                  <span v-if="!isSmallScreen">Visualizar</span>
+
                 </button>
               </router-link>
             </td>

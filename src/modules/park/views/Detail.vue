@@ -2,7 +2,7 @@
 import { useStore } from "@/composables/useStore";
 import { computed, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
-import { formatTimestamp, timestamp1 } from "../util";
+import { formatTimestamp } from "../util";
 import Alert from "../../../components/alert.vue";
 import Body from "../../../components/body.vue";
 
@@ -16,6 +16,8 @@ const newValue = ref("");
 let checkOut = ref("");
 const value = ref("");
 const id = route.params.id;
+const local = ref(false);
+const status = ref("");
 
 let timestamp = ref();
 let formattedTimestamp = ref();
@@ -40,8 +42,19 @@ async function handleFinishPark() {
   }
 }
 
+async function getPark() {
+  await content.park.getPark(route.params.id);
+  local.value = content.park.selectedPark?.statusPark;
+  console.log(local.value);
+  if (local.value) {
+    status.value = "Ativo";
+  } else {
+    status.value = "Desativado";
+  }
+}
+
 onMounted(() => {
-  content.park.getPark(route.params.id);
+  getPark();
 });
 </script>
 
@@ -107,7 +120,7 @@ onMounted(() => {
           </tr>
           <tr></tr>
           <tr>
-            <td>Model:</td>
+            <td>Modelo:</td>
             <td>
               <input
                 type="text"
@@ -123,7 +136,7 @@ onMounted(() => {
               <input
                 type="text"
                 readonly
-                :value="content.park.selectedPark?.statusPark"
+                :value="status"
                 class="form-control"
               />
             </td>

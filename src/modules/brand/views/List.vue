@@ -2,16 +2,17 @@
 import { useStore } from "@/composables/useStore";
 import { onMounted, ref } from "vue";
 import Body from "../../../components/body.vue";
+import { inject } from "vue";
+
+const isSmallScreen = ref(inject("isSmallScreenMessage"));
 
 const { content } = useStore();
 const newTitle = ref("");
 
-
 onMounted(async () => {
   content.brand.brands();
-  
+
   this.items = res.sort((a, b) => a.name.localeCompare(b.name));
-   
 });
 </script>
 
@@ -20,7 +21,8 @@ onMounted(async () => {
     <template v-slot:buttons>
       <RouterLink to="/brand/add">
         <button class="btn btn-dark">
-          <i class="bi bi-plus-circle"></i> Adicionar
+          <i class="bi bi-plus-circle"></i>
+          <span v-if="!isSmallScreen">Adicionar</span>
         </button>
       </RouterLink>
     </template>
@@ -46,7 +48,8 @@ onMounted(async () => {
             <td>
               <router-link :to="`/brand/${brand.id}`">
                 <button class="btn btn-dark">
-                  <i class="bi bi-eye"></i> Visualizar
+                  <i class="bi bi-eye"></i>
+                  <span v-if="!isSmallScreen">Visualizar</span>
                 </button>
               </router-link>
             </td>
@@ -58,4 +61,3 @@ onMounted(async () => {
 </template>
 
 <style></style>
-

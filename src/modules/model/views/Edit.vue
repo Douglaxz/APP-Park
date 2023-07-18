@@ -4,6 +4,9 @@ import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import Alert from "../../../components/alert.vue";
 import Body from "../../../components/body.vue";
+import { inject } from "vue";
+
+const isSmallScreen = ref(inject("isSmallScreenMessage"));
 
 const route = useRoute();
 const { content } = useStore();
@@ -12,8 +15,6 @@ const selectedMark = ref(content.model.selectedModel?.idMark);
 const status = ref(content.model.selectedModel?.statusModel);
 const id = route.params.id;
 
-import { inject } from "vue";
-const isSmallScreen = inject("isSmallScreenMessage");
 
 async function handleUpdateModel() {
   const res = await content.model.updateModel(id, {
@@ -54,7 +55,7 @@ onMounted(() => {
       <div class="formIntern">
         <table class="table">
           <tr>
-            <td>Marca</td>
+            <td>Marca:</td>
             <td>
               <select v-model="selectedMark" class="form-control">
                 <option value="">Selecione uma marca</option>
@@ -69,12 +70,11 @@ onMounted(() => {
             </td>
           </tr>
           <tr>
-            <td>Descrição</td>
+            <td>Modelo:</td>
             <td>
               <input type="text" v-model="desc" class="form-control" />
             </td>
           </tr>
-
           <tr>
             <td>Status:</td>
             <td>

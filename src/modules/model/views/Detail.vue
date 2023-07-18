@@ -4,6 +4,9 @@ import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import Alert from "../../../components/alert.vue";
 import Body from "../../../components/body.vue";
+import { inject } from "vue";
+
+const isSmallScreen = ref(inject("isSmallScreenMessage"));
 
 const route = useRoute();
 
@@ -11,10 +14,6 @@ const { content } = useStore();
 const newValue = ref("");
 const local = ref(false);
 const status = ref("");
-
-import { inject } from "vue";
-
-const isSmallScreen = inject("isSmallScreenMessage");
 
 async function getModel() {
   await content.model.getModel(route.params.id);
@@ -52,7 +51,7 @@ onMounted(() => {
       <div class="formIntern">
         <table class="table">
           <tr>
-            <td width="30%">Marca</td>
+            <td width="30%">Marca:</td>
             <td width="70%">
               <input
                 type="text"
@@ -63,7 +62,7 @@ onMounted(() => {
             </td>
           </tr>
           <tr>
-            <td>Modelo</td>
+            <td>Modelo:</td>
             <td>
               <input
                 type="text"

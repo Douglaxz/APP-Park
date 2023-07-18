@@ -3,13 +3,15 @@ import { useStore } from "@/composables/useStore";
 import { ref } from "vue";
 import { useRoute } from "vue-router";
 import Body from "../../../components/body.vue";
+import { inject } from "vue";
+
+const isSmallScreen = ref(inject("isSmallScreenMessage"));
 
 const route = useRoute();
 const { content } = useStore();
 const newTitle = ref("");
 const newValue = ref("");
 const newBrand = ref("");
-
 
 async function handleCreateBrand() {
   const res = await content.brand.addBrands({
@@ -18,13 +20,8 @@ async function handleCreateBrand() {
     valBrand: newValue.value,
   });
   if (!res) return;
-    alert("Marca criada com sucesso");
-    window.location.href = "/brand";
-
- 
-    
-    /* this.items = res.sort((a, b) => a.name.localeCompare(b.name));
-   console.log("AQUI MESMO") */
+  alert("Marca criada com sucesso");
+  this.$router.push("/brand");
 }
 </script>
 
@@ -32,11 +29,13 @@ async function handleCreateBrand() {
   <Body title="Adicionar uma marca de veículo">
     <template v-slot:buttons>
       <button class="btn btn-dark" @click="handleCreateBrand">
-        <i class="bi bi-plus-circle"></i> Salvar
+        <i class="bi bi-plus-circle"></i>
+        <span v-if="!isSmallScreen">Salvar</span>
       </button>
       <RouterLink to="/brand">
         <button class="btn btn-dark">
-          <i class="bi bi-box-arrow-left"></i> Voltar
+          <i class="bi bi-box-arrow-left"></i>
+          <span v-if="!isSmallScreen">Voltar</span>
         </button>
       </RouterLink>
     </template>
@@ -64,4 +63,3 @@ async function handleCreateBrand() {
   </Body>
 </template>
 <style></style>
-

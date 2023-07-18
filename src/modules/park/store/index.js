@@ -29,8 +29,8 @@ export const parkStore = reactive({
 
     parks = await Promise.all(
       parks.map(async (item) => {
-        const { descMark } = await getMarkName(item.idMark);
-        return { ...item, marca: descMark };
+        const { descBrand } = await getMarkName(item.idMark);
+        return { ...item, marca: descBrand };
       })
     );
 

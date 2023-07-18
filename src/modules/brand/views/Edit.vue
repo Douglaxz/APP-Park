@@ -4,6 +4,9 @@ import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import Alert from "../../../components/alert.vue";
 import Body from "../../../components/body.vue";
+import { inject } from "vue";
+
+const isSmallScreen = ref(inject("isSmallScreenMessage"));
 
 const route = useRoute();
 const { content } = useStore();
@@ -26,24 +29,23 @@ async function handleEditBrand() {
 onMounted(async () => {
   if (content.brand.selectedBrand?.id) return;
   content.brand.getBrand(route.params.id);
-
 });
 </script>
 
 <template>
-
   <Body title="Editar marca de veículos">
     <template v-slot:buttons>
       <button class="btn btn-dark" @click="handleEditBrand">
-        <i class="bi bi-check-circle"></i> Salvar
+        <i class="bi bi-check-circle"></i>
+        <span v-if="!isSmallScreen">Salvar</span>
       </button>
       <router-link :to="`/brand/${route.params.id}`">
         <button class="btn btn-dark">
-          <i class="bi bi-box-arrow-left"></i> Voltar
+          <i class="bi bi-box-arrow-left"></i>
+          <span v-if="!isSmallScreen">Voltar</span>
         </button>
       </router-link>
-      </template
-    >
+    </template>
     <template v-slot:content>
       <div class="formIntern">
         <table class="table">
@@ -53,7 +55,7 @@ onMounted(async () => {
               <input type="text" v-model="desc" class="form-control" />
             </td>
           </tr>
-         
+
           <tr>
             <td>Status:</td>
             <td>

@@ -3,7 +3,9 @@ import { useStore } from "@/composables/useStore";
 import { onMounted, ref, useModel } from "vue";
 import Alert from "../../../components/alert.vue";
 import Body from "../../../components/body.vue";
+import { inject } from "vue";
 
+const isSmallScreen = ref(inject("isSmallScreenMessage"));
 const { content } = useStore();
 
 const newTitle = ref("");
@@ -32,11 +34,13 @@ async function handleCreatePrice() {
   <Body title="Adicionar lista de preços">
     <template v-slot:buttons>
       <button class="btn btn-dark" @click="handleCreatePrice">
-        <i class="bi bi-plus-circle"></i> Salvar
+        <i class="bi bi-plus-circle"></i>
+        <span v-if="!isSmallScreen">Salvar</span>
       </button>
       <RouterLink to="/price">
         <button class="btn btn-dark">
-          <i class="bi bi-box-arrow-left"></i> Voltar
+          <i class="bi bi-box-arrow-left"></i>
+          <span v-if="!isSmallScreen">Voltar</span>
         </button>
       </RouterLink>
     </template>
@@ -56,7 +60,7 @@ async function handleCreatePrice() {
             </td>
           </tr>
           <tr>
-            <td>Minuto inicio cobrança:</td>
+            <td>Minuto inicio:</td>
             <td>
               <input
                 type="text"
@@ -66,7 +70,7 @@ async function handleCreatePrice() {
             </td>
           </tr>
           <tr>
-            <td>Minuto final cobrança:</td>
+            <td>Minuto final:</td>
             <td>
               <input
                 type="text"

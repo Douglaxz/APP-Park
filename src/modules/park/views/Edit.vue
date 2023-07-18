@@ -5,6 +5,9 @@ import { useRoute } from "vue-router";
 import { formatTimestamp } from "../util";
 import Alert from "../../../components/alert.vue";
 import Body from "../../../components/body.vue";
+import { inject } from "vue";
+
+const isSmallScreen = ref(inject("isSmallScreenMessage"));
 
 const route = useRoute();
 const { content } = useStore();
@@ -56,12 +59,16 @@ onMounted(() => {
     <template v-slot:buttons>
       <button class="btn btn-dark" @click="handleUpdatePark">
         <i class="bi bi-check-circle"></i>
-        <p v-if="!isSmallScreen">Salvar</p>
+
+        <span v-if="!isSmallScreen">Salvar</span>
+
       </button>
       <router-link :to="`/park/${route.params.id}`">
         <button class="btn btn-dark">
           <i class="bi bi-box-arrow-left"></i>
-          <p v-if="!isSmallScreen">Voltar</p>
+
+          <span v-if="!isSmallScreen">Voltar</span>
+
         </button>
       </router-link>
     </template>

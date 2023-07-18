@@ -5,6 +5,10 @@ import { useRoute } from "vue-router";
 import Alert from "../../../components/alert.vue";
 import Body from "../../../components/body.vue";
 
+import { inject } from "vue";
+
+const isSmallScreen = ref(inject("isSmallScreenMessage"));
+
 const route = useRoute();
 
 const { content } = useStore();
@@ -30,12 +34,14 @@ onMounted(() => {
     <template v-slot:buttons>
       <router-link :to="`/price/${route.params.id}/edit`">
         <button class="btn btn-dark">
-          <i class="bi bi-pencil-square"></i> Editar
+          <i class="bi bi-pencil-square"></i>
+          <span v-if="!isSmallScreen">Editar</span>
         </button>
       </router-link>
       <RouterLink to="/price">
         <button class="btn btn-dark">
-          <i class="bi bi-box-arrow-left"></i> Voltar
+          <i class="bi bi-box-arrow-left"></i>
+          <span v-if="!isSmallScreen">Voltar</span>
         </button>
       </RouterLink></template
     >
@@ -76,7 +82,7 @@ onMounted(() => {
             </td>
           </tr>
           <tr>
-            <td>Minuto inicio cobrança:</td>
+            <td>Minuto inicio:</td>
             <td>
               <input
                 type="text"
@@ -87,7 +93,7 @@ onMounted(() => {
             </td>
           </tr>
           <tr>
-            <td>Minuto final cobrança:</td>
+            <td>Minuto final:</td>
             <td>
               <input
                 type="text"
