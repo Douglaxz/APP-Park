@@ -15,6 +15,7 @@ const selectedMark = ref(content.model.selectedModel?.idMark);
 const status = ref(content.model.selectedModel?.statusModel);
 const id = route.params.id;
 
+
 async function handleUpdateModel() {
   const res = await content.model.updateModel(id, {
     descModel: desc.value,

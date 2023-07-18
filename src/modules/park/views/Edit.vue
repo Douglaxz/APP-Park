@@ -12,6 +12,9 @@ const isSmallScreen = ref(inject("isSmallScreenMessage"));
 const route = useRoute();
 const { content } = useStore();
 
+import { inject } from "vue";
+const isSmallScreen = inject("isSmallScreenMessage");
+
 const selectedMark = ref(content.park.selectedPark?.idMark);
 const selectedModel = ref(content.park.selectedPark?.idModel);
 const status = ref(content.park.selectedPark?.statusPark);
@@ -51,17 +54,21 @@ onMounted(() => {
 </script>
 
 <template>
-  <Alert msg="Item da tabela de preços atualizado com sucesso"></Alert>
-  <Body title="Editar lista de preços">
+  <Alert msg="Estadia atualizado com sucesso"></Alert>
+  <Body title="Editar estadia">
     <template v-slot:buttons>
       <button class="btn btn-dark" @click="handleUpdatePark">
         <i class="bi bi-check-circle"></i>
+
         <span v-if="!isSmallScreen">Salvar</span>
+
       </button>
       <router-link :to="`/park/${route.params.id}`">
         <button class="btn btn-dark">
           <i class="bi bi-box-arrow-left"></i>
+
           <span v-if="!isSmallScreen">Voltar</span>
+
         </button>
       </router-link>
     </template>
@@ -69,7 +76,7 @@ onMounted(() => {
       <div class="formIntern">
         <table class="table">
           <tr>
-            <td width="30%">Entrada</td>
+            <td width="30%">Entrada:</td>
             <td width="70%">
               <input
                 type="text"
@@ -80,13 +87,13 @@ onMounted(() => {
             </td>
           </tr>
           <tr>
-            <td>Placa</td>
+            <td>Placa:</td>
             <td>
               <input type="text" v-model="licensePlate" class="form-control" />
             </td>
           </tr>
           <tr>
-            <td>Marca</td>
+            <td>Marca:</td>
             <td>
               <select
                 v-model="selectedMark"

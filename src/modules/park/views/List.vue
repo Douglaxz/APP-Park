@@ -6,6 +6,7 @@ import Alert from "../../../components/alert.vue";
 import Body from "../../../components/body.vue";
 import { inject } from "vue";
 
+
 const isSmallScreen = ref(inject("isSmallScreenMessage"));
 
 onMounted(async () => {
@@ -19,18 +20,22 @@ onMounted(async () => {
       <RouterLink to="/park/add">
         <button class="btn btn-dark">
           <i class="bi bi-plus-circle"></i>
+
           <span v-if="!isSmallScreen">Adicionar</span>
+
         </button>
       </RouterLink>
     </template>
     <template v-slot:content>
       <table class="table table-striped table-hover">
-        <thead class="table-dark">
+        <thead class="table-dark table-responsive">
           <tr>
             <th>Modelo</th>
             <th>Placa</th>
             <th>Entrada</th>
+
             <th>Status</th>
+
             <th>Ação</th>
           </tr>
         </thead>
@@ -42,18 +47,14 @@ onMounted(async () => {
               {{ park.checkIn.toDate().toLocaleDateString() }}
               {{ park.checkIn.toDate().toLocaleTimeString() }}
             </td>
-            <td class="text-center align-middle">
-              <i
-                v-if="park.statusPark"
-                class="bi bi-toggle2-on text-success fs-1"
-              ></i>
-              <i v-else class="bi bi-toggle2-off text-danger fs-1"></i>
-            </td>
+
             <td class="text-center align-middle">
               <router-link :to="`/park/${park.id}`">
                 <button class="btn btn-dark">
                   <i class="bi bi-eye"></i>
+
                   <span v-if="!isSmallScreen">Visualizar</span>
+
                 </button>
               </router-link>
             </td>
