@@ -11,7 +11,6 @@ onMounted(async () => {
   content.brand.brands();
   
   this.items = res.sort((a, b) => a.name.localeCompare(b.name));
-   console.log("AQUI MESMO")
    
 });
 </script>
