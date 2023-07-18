@@ -13,7 +13,6 @@ const status = ref(content.model.selectedModel?.statusModel);
 const id = route.params.id;
 
 import { inject } from "vue";
-
 const isSmallScreen = inject("isSmallScreenMessage");
 
 async function handleUpdateModel() {

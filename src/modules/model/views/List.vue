@@ -14,7 +14,6 @@ onMounted(async () => {
 </script>
 
 <template>
-  isSmallScreen{{ isSmallScreen }}
   <Body title="Modelos de veículos">
     <template v-slot:buttons>
       <RouterLink to="/model/add">
