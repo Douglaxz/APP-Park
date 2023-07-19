@@ -17,6 +17,12 @@ export async function list(query) {
     localItems.push({ ...doc.data(), id: doc.id });
   });
 
+  localItems.sort((a, b) => {
+    const checkInA = a.checkIn;
+    const checkInB = b.checkIn;
+    return checkInB - checkInA; // Ordenação decrescente
+  });
+
   return localItems;
 }
 

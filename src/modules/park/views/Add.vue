@@ -47,12 +47,12 @@ onMounted(() => {
     <template v-slot:buttons>
       <button class="btn btn-dark" @click="handleCreatePark">
         <i class="bi bi-plus-circle"></i>
-        <p v-if="!isSmallScreen">Salvar</p>
+        <span v-if="!isSmallScreen">Salvar</span>
       </button>
       <RouterLink to="/park">
         <button class="btn btn-dark">
           <i class="bi bi-box-arrow-left"></i>
-          <p v-if="!isSmallScreen">Voltar</p>
+          <span v-if="!isSmallScreen">Voltar</span>
         </button>
       </RouterLink>
     </template>

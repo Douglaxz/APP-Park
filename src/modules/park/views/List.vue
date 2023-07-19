@@ -6,7 +6,6 @@ import Alert from "../../../components/alert.vue";
 import Body from "../../../components/body.vue";
 import { inject } from "vue";
 
-
 const isSmallScreen = ref(inject("isSmallScreenMessage"));
 
 onMounted(async () => {
@@ -20,9 +19,7 @@ onMounted(async () => {
       <RouterLink to="/park/add">
         <button class="btn btn-dark">
           <i class="bi bi-plus-circle"></i>
-
           <span v-if="!isSmallScreen">Adicionar</span>
-
         </button>
       </RouterLink>
     </template>
@@ -33,19 +30,22 @@ onMounted(async () => {
             <th>Modelo</th>
             <th>Placa</th>
             <th>Entrada</th>
-
-            <th>Status</th>
+            <th>Saída</th>
 
             <th>Ação</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="park in content.park.items">
-            <td>{{ park.descModel }}</td>
-            <td>{{ park.licensePlate }}</td>
-            <td>
+            <td class="align-middle">{{ park.descModel }}</td>
+            <td class="align-middle">{{ park.licensePlate }}</td>
+            <td class="align-middle">
               {{ park.checkIn.toDate().toLocaleDateString() }}
-              {{ park.checkIn.toDate().toLocaleTimeString() }}
+              {{ park.checkIn.toDate().toLocaleTimeString().slice(0, 5) }}
+            </td>
+            <td class="align-middle">
+              {{ park.checkOut?.toDate().toLocaleDateString() }}
+              {{ park.checkOut?.toDate().toLocaleTimeString().slice(0, 5) }}
             </td>
 
             <td class="text-center align-middle">
@@ -54,7 +54,6 @@ onMounted(async () => {
                   <i class="bi bi-eye"></i>
 
                   <span v-if="!isSmallScreen">Visualizar</span>
-
                 </button>
               </router-link>
             </td>
