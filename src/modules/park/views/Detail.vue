@@ -45,7 +45,7 @@ async function handleFinishPark() {
 
   if (!res) {
     alert("Estadia finalizada com sucesso");
-    window.location.href = "/park";
+    this.$router.push("/park");
   }
 }
 
